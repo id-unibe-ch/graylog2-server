@@ -5,11 +5,12 @@ import styled, { type StyledComponent } from 'styled-components';
 
 import { Button } from 'components/graylog';
 import { Icon } from 'components/common';
+import { type ThemeInterface } from 'theme';
 
-const DirtyButton: StyledComponent<{}, void, HTMLButtonElement> = styled(Button)`
+const DirtyButton: StyledComponent<{}, ThemeInterface, HTMLButtonElement> = styled(Button)(({ theme }) => `
   position: relative;
 
-  ::after {
+  &::after {
     position: absolute;
     content: '';
     height: 16px;
@@ -17,9 +18,9 @@ const DirtyButton: StyledComponent<{}, void, HTMLButtonElement> = styled(Button)
     top: -5px;
     right: -6px;
     border-radius: 50%;
-    background-color: #ffc107;
+    background-color: ${theme.color.variant.warning};
   }
-`;
+`);
 
 type Props = {
   disabled: boolean,
